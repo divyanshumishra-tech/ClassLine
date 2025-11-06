@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Contact - ClassLine</title>
+<link rel="icon" href="favicon.ico" /><link rel="stylesheet" href="style.css">
+<!-- EmailJS SDK (setup required as explained in ReadMe) -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script type="text/javascript">
+(function(){emailjs.init('YOUR_EMAILJS_USER_ID');})(); // replace with your EmailJS user ID
+function sendMessage(e){e.preventDefault();var btn=document.getElementById('sendBtn');btn.disabled=true;btn.innerText='Sending...';var form=document.getElementById('contactForm');var data={service_id:'YOUR_SERVICE_ID',template_id:'YOUR_TEMPLATE_ID',template_params:{from_name:form.name.value,from_email:form.email.value,message:form.message.value}};emailjs.send(data.service_id,data.template_id,data.template_params).then(function(){alert('Message sent — we will contact you soon.');form.reset();btn.disabled=false;btn.innerText='Send Message';},function(err){alert('Failed to send message — check ReadMe for setup.');btn.disabled=false;btn.innerText='Send Message';});}
+</script>
+</head><body>
+<div class="container">
+<header><nav class="navbar"><div class="logo-wrap"><img src="classline-logo.png" alt="ClassLine logo"><div><div class="site-title">ClassLine</div><div class="tagline">Smart notebooks for bright minds</div></div></div><nav><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></nav></nav></header>
+<section style="padding-top:30px">
+<h2 style="color:var(--green)">Contact Us</h2>
+<p style="color:var(--muted);max-width:760px">Send us a message for wholesale or partnership inquiries.</p>
+<form id="contactForm" class="contact-form" onsubmit="sendMessage(event)">
+<input name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+<button id="sendBtn" type="submit">Send Message</button>
+</form>
+</section>
+<footer><div>© ClassLine — All rights reserved</div></footer>
+</div>
+</body></html>
